@@ -324,11 +324,11 @@ public class CallTest {
 
   static <T> Call<T> errorCall(RuntimeException error) {
     return new Call.Base<T>() {
-      @Override T doExecute() throws IOException {
+      @Override protected T doExecute() throws IOException {
         throw error;
       }
 
-      @Override void doEnqueue(Callback<T> callback) {
+      @Override protected void doEnqueue(Callback<T> callback) {
         callback.onError(error);
       }
 
